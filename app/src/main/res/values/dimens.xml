@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="numpad_button_width">100dp</dimen>
+    <dimen name="numpad_button_height">100dp</dimen>
+    <dimen name="arithmetic_button_width">75dp</dimen>
+    <dimen name="arithmetic_button_height">80dp</dimen>
+</resources>

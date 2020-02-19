@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Calculator</string>
+
+    <!--  Number Pad Button  -->
+    <string name="zero_button">0</string>
+    <string name="one_button">1</string>
+    <string name="two_button">2</string>
+    <string name="three_button">3</string>
+    <string name="four_button">4</string>
+    <string name="five_button">5</string>
+    <string name="six_button">6</string>
+    <string name="seven_button">7</string>
+    <string name="eight_button">8</string>
+    <string name="nine_button">9</string>
+    <string name="period_button">.</string>
+    <string name="delete_button">DEL</string>
+
+    <!--  Arithmetic Button  -->
+    <string name="add_button">+</string>
+    <string name="subtract_button">\u2212</string>
+    <string name="multiply_button">\u00D7</string>
+    <string name="divide_button">"\u00F7"</string>
+
+    <!--  Submit Button  -->
+    <string name="equals_button">=</string>
+</resources>
