@@ -1,26 +1,24 @@
 <resources>
     <string name="app_name">Calculator</string>
 
-    <!--  Number Pad Button  -->
-    <string name="zero_button">0</string>
-    <string name="one_button">1</string>
-    <string name="two_button">2</string>
-    <string name="three_button">3</string>
-    <string name="four_button">4</string>
-    <string name="five_button">5</string>
-    <string name="six_button">6</string>
-    <string name="seven_button">7</string>
-    <string name="eight_button">8</string>
-    <string name="nine_button">9</string>
-    <string name="period_button">.</string>
-    <string name="delete_button">DEL</string>
+    <!--  Number Pad Button Names  -->
+    <string name="period">.</string>
+    <string name="zero">0</string>
+    <string name="delete">DEL</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
 
-    <!--  Arithmetic Button  -->
-    <string name="add_button">+</string>
-    <string name="subtract_button">\u2212</string>
-    <string name="multiply_button">\u00D7</string>
-    <string name="divide_button">"\u00F7"</string>
-
-    <!--  Submit Button  -->
-    <string name="equals_button">=</string>
+    <!--  Arithmetic Buttons Column Names  -->
+    <string name="equals_sign">=</string>
+    <string name="plus_sign">+</string>
+    <string name="minus_sign">\u2212</string>
+    <string name="multiplication_sign">\u00D7</string>
+    <string name="division_sign">"\u00F7"</string>
 </resources>
