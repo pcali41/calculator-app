@@ -6,193 +6,298 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/output_window"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center_vertical|end"
+        android:isScrollContainer="true"
+        android:textAllCaps="false"
+        android:textColor="@android:color/black"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toTopOf="@id/result_preview_window_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/result_preview_window_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.21" />
+
+    <TextView
+        android:id="@+id/result_preview_window"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="top|end"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@id/btn_controls_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/result_preview_window_top" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/btn_controls_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".35" />
+
     <Button
-        android:id="@+id/period_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
+        android:id="@+id/period_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
         android:focusableInTouchMode="false"
         android:gravity="center"
-        android:text="@string/period_button"
+        android:text="@string/period"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_2_start"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/one_btn" />
+
+    <Button
+        android:id="@+id/one_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
+        android:focusableInTouchMode="false"
+        android:text="@string/one"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/period_btn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_2_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/four_btn" />
+
+    <Button
+        android:id="@+id/four_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
+        android:focusableInTouchMode="false"
+        android:text="@string/four"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/one_btn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_2_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seven_btn" />
+
+    <Button
+        android:id="@+id/seven_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
+        android:focusableInTouchMode="false"
+        android:text="@string/seven"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/four_btn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_2_start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_controls_top"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/btn_col_2_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25060827"
+        app:layout_constraintTop_toTopOf="@id/btn_controls_top" />
+
+    <Button
+        android:id="@+id/zero_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
+        android:focusableInTouchMode="false"
+        android:text="@string/zero"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_3_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_2_start"
+        app:layout_constraintTop_toBottomOf="@+id/two_btn" />
 
     <Button
-        android:id="@+id/zero_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
+        android:id="@+id/two_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
         android:focusableInTouchMode="false"
-        android:text="@string/zero_button"
+        android:text="@string/two"
         android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/zero_btn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_3_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_2_start"
+        app:layout_constraintTop_toBottomOf="@+id/five_btn" />
+
+    <Button
+        android:id="@+id/five_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
+        android:focusableInTouchMode="false"
+        android:text="@string/five"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/two_btn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_3_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_2_start"
+        app:layout_constraintTop_toBottomOf="@+id/eight_btn" />
+
+    <Button
+        android:id="@+id/eight_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
+        android:focusableInTouchMode="false"
+        android:text="@string/eight"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/five_btn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_3_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_2_start"
+        app:layout_constraintTop_toTopOf="@+id/btn_controls_top"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/btn_col_3_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".5" />
+
+    <Button
+        android:id="@+id/delete_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
+        android:focusableInTouchMode="false"
+        android:longClickable="true"
+        android:text="@string/delete"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/period_button" />
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_4_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_3_start"
+        app:layout_constraintTop_toBottomOf="@+id/three_btn" />
 
     <Button
-        android:id="@+id/delete_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
+        android:id="@+id/three_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
         android:focusableInTouchMode="false"
-        android:text="@string/delete_button"
+        android:text="@string/three"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/zero_button" />
+        app:layout_constraintBottom_toTopOf="@+id/delete_btn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_4_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_3_start"
+        app:layout_constraintTop_toBottomOf="@+id/six_btn" />
 
     <Button
-        android:id="@+id/one_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
+        android:id="@+id/six_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
         android:focusableInTouchMode="false"
-        android:text="@string/one_button"
+        android:text="@string/six"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/period_button"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/three_btn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_4_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_3_start"
+        app:layout_constraintTop_toBottomOf="@+id/nine_btn" />
 
     <Button
-        android:id="@+id/two_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
+        android:id="@+id/nine_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/colorNumpadButton"
         android:focusableInTouchMode="false"
-        android:text="@string/two_button"
+        android:text="@string/nine"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/zero_button"
-        app:layout_constraintStart_toEndOf="@+id/one_button" />
+        app:layout_constraintBottom_toTopOf="@+id/six_btn"
+        app:layout_constraintEnd_toStartOf="@+id/btn_col_4_start"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_3_start"
+        app:layout_constraintTop_toTopOf="@+id/btn_controls_top"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/btn_col_4_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
 
     <Button
-        android:id="@+id/three_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
+        android:id="@+id/equals_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/holo_orange_light"
         android:focusableInTouchMode="false"
-        android:text="@string/three_button"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/delete_button"
-        app:layout_constraintStart_toEndOf="@+id/two_button" />
-
-    <Button
-        android:id="@+id/four_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
-        android:focusableInTouchMode="false"
-        android:text="@string/four_button"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/one_button"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/five_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
-        android:focusableInTouchMode="false"
-        android:text="@string/five_button"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/two_button"
-        app:layout_constraintStart_toEndOf="@+id/four_button" />
-
-    <Button
-        android:id="@+id/six_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
-        android:focusableInTouchMode="false"
-        android:text="@string/six_button"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/three_button"
-        app:layout_constraintStart_toEndOf="@+id/five_button" />
-
-    <Button
-        android:id="@+id/seven_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
-        android:focusableInTouchMode="false"
-        android:text="@string/seven_button"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/four_button"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/eight_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
-        android:focusableInTouchMode="false"
-        android:text="@string/eight_button"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/five_button"
-        app:layout_constraintStart_toEndOf="@+id/seven_button" />
-
-    <Button
-        android:id="@+id/nine_button"
-        android:layout_width="@dimen/numpad_button_width"
-        android:layout_height="@dimen/numpad_button_height"
-        android:background="#FAFAFA"
-        android:focusableInTouchMode="false"
-        android:text="@string/nine_button"
-        android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/six_button"
-        app:layout_constraintStart_toEndOf="@+id/eight_button" />
-
-    <Button
-        android:id="@+id/equals_button"
-        android:layout_width="@dimen/arithmetic_button_width"
-        android:layout_height="@dimen/arithmetic_button_height"
-        android:background="#FFA726"
-        android:focusableInTouchMode="false"
-        android:text="@string/equals_button"
+        android:text="@string/equals_sign"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/delete_button" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_4_start"
+        app:layout_constraintTop_toBottomOf="@+id/add_btn" />
 
     <Button
-        android:id="@+id/add_button"
-        android:layout_width="@dimen/arithmetic_button_width"
-        android:layout_height="@dimen/arithmetic_button_height"
-        android:background="#D3D3D3"
+        android:id="@+id/add_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorButtonNormal"
         android:focusableInTouchMode="false"
-        android:text="@string/add_button"
+        android:text="@string/plus_sign"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/equals_button"
-        app:layout_constraintStart_toStartOf="@+id/equals_button" />
+        app:layout_constraintBottom_toTopOf="@+id/equals_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_4_start"
+        app:layout_constraintTop_toBottomOf="@+id/subtract_btn" />
 
     <Button
-        android:id="@+id/subtract_button"
-        android:layout_width="@dimen/arithmetic_button_width"
-        android:layout_height="@dimen/arithmetic_button_height"
-        android:background="#D3D3D3"
+        android:id="@+id/subtract_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorButtonNormal"
         android:focusableInTouchMode="false"
-        android:text="@string/subtract_button"
+        android:text="@string/minus_sign"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/add_button"
-        app:layout_constraintStart_toStartOf="@+id/add_button" />
+        app:layout_constraintBottom_toTopOf="@+id/add_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_4_start"
+        app:layout_constraintTop_toBottomOf="@+id/multiply_btn" />
 
     <Button
-        android:id="@+id/multiply_button"
-        android:layout_width="@dimen/arithmetic_button_width"
-        android:layout_height="@dimen/arithmetic_button_height"
-        android:background="#D3D3D3"
+        android:id="@+id/multiply_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorButtonNormal"
         android:focusableInTouchMode="false"
-        android:text="@string/multiply_button"
+        android:text="@string/multiplication_sign"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/subtract_button"
-        app:layout_constraintStart_toStartOf="@+id/add_button" />
+        app:layout_constraintBottom_toTopOf="@+id/subtract_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_4_start"
+        app:layout_constraintTop_toBottomOf="@+id/divide_btn" />
 
     <Button
-        android:id="@+id/divide_button"
-        android:layout_width="@dimen/arithmetic_button_width"
-        android:layout_height="@dimen/arithmetic_button_height"
-        android:background="#D3D3D3"
+        android:id="@+id/divide_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?attr/colorButtonNormal"
         android:focusableInTouchMode="false"
-        android:text="@string/divide_button"
+        android:text="@string/division_sign"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/multiply_button"
-        app:layout_constraintStart_toStartOf="@+id/multiply_button" />
+        app:layout_constraintBottom_toTopOf="@+id/multiply_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/btn_col_4_start"
+        app:layout_constraintTop_toTopOf="@+id/btn_controls_top"
+        app:layout_constraintVertical_chainStyle="packed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
