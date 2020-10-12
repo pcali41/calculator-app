@@ -15,10 +15,10 @@
     <string name="eight">8</string>
     <string name="nine">9</string>
 
-    <!--  Arithmetic Buttons Column Names  -->
+    <!--  Arithmetic Operation Button Names  -->
     <string name="equals_sign">=</string>
-    <string name="plus_sign">+</string>
+    <string name="plus_sign">\u002B</string>
     <string name="minus_sign">\u2212</string>
-    <string name="multiplication_sign">\u00D7</string>
-    <string name="division_sign">"\u00F7"</string>
+    <string name="multiply_sign">\u00D7</string>
+    <string name="divide_sign">\u00F7</string>
 </resources>
