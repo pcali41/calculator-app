@@ -42,12 +42,17 @@ class StringSplitCalculator : StringCalculator {
         var numToReplace = 0
         var newOperation = operation.symbol
 
-        when(newExpression.lastOrNull()) {
+        when (newExpression.lastOrNull()) {
             // If we're trying to subtract with an empty expression use a negative sign
             null -> if (operation == Operation.SUBTRACT) newOperation = NEGATIVE_SIGN
 
+            // Replace the negative sign and its preceding operation, if any
             NEGATIVE_SIGN -> {
-                numToReplace = if (operation == Operation.SUBTRACT) 1 else 2
+                numToReplace = 2
+
+                if (operation == Operation.SUBTRACT && expression.length <= 2) {
+                    newOperation = NEGATIVE_SIGN
+                }
             }
 
             // Replace the last operator if the last character is an add/subtract sign
