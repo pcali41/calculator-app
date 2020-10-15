@@ -15,7 +15,7 @@
     <string name="eight">8</string>
     <string name="nine">9</string>
 
-    <!--  Arithmetic Operation Button Names  -->
+    <!--  Arithmetic Operator Button Names  -->
     <string name="equals_sign">=</string>
     <string name="plus_sign">\u002B</string>
     <string name="minus_sign">\u2212</string>

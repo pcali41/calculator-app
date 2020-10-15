@@ -1,17 +1,20 @@
 package com.example.calculator
 
+import androidx.lifecycle.LiveData
+
 interface StringCalculator {
-    fun addDigit(expression: String, digit: Char): String
+    val expression: LiveData<String>
+    val result: LiveData<String>
 
-    fun addDecimal(expression: String): String
+    fun addDigit(digit: Char)
 
-    fun addOperation(expression: String, operation: Operation): String
+    fun addDecimal()
 
-    fun clear(expression: String): String
+    fun addOperator(operator: Operator)
 
-    fun compute(expression: String): String
+    fun delete()
 
-    fun delete(expression: String): String
+    fun clear()
 
-    fun submit(expression: String): String
+    fun applyResult()
 }

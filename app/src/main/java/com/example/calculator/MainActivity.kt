@@ -16,8 +16,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val calculator: StringCalculator = StringSplitCalculator()
+        val calculator: StringCalculator = StringCalculatorImpl()
         val viewModelFactory = CalculatorViewModelFactory(calculator)
+
         viewModel = ViewModelProvider(this, viewModelFactory)
             .get(CalculatorViewModel::class.java)
 

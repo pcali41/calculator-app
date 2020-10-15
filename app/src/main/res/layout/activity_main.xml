@@ -5,7 +5,7 @@
 
     <data>
 
-        <import type="com.example.calculator.Operation" />
+        <import type="com.example.calculator.Operator" />
 
         <variable
             name="viewModel"
@@ -291,7 +291,7 @@
             android:layout_height="0dp"
             android:background="?attr/colorButtonNormal"
             android:focusableInTouchMode="false"
-            android:onClick="@{() -> viewModel.onAddOperation(Operation.ADD)}"
+            android:onClick="@{() -> viewModel.onAddOperator(Operator.ADD)}"
             android:text="@string/plus_sign"
             android:textSize="36sp"
             app:layout_constraintBottom_toTopOf="@+id/submit_btn"
@@ -305,7 +305,7 @@
             android:layout_height="0dp"
             android:background="?attr/colorButtonNormal"
             android:focusableInTouchMode="false"
-            android:onClick="@{() -> viewModel.onAddOperation(Operation.SUBTRACT)}"
+            android:onClick="@{() -> viewModel.onAddOperator(Operator.SUBTRACT)}"
             android:text="@string/minus_sign"
             android:textSize="36sp"
             app:layout_constraintBottom_toTopOf="@+id/add_btn"
@@ -319,7 +319,7 @@
             android:layout_height="0dp"
             android:background="?attr/colorButtonNormal"
             android:focusableInTouchMode="false"
-            android:onClick="@{() -> viewModel.onAddOperation(Operation.MULTIPLY)}"
+            android:onClick="@{() -> viewModel.onAddOperator(Operator.MULTIPLY)}"
             android:text="@string/multiply_sign"
             android:textSize="36sp"
             app:layout_constraintBottom_toTopOf="@+id/subtract_btn"
@@ -333,7 +333,7 @@
             android:layout_height="0dp"
             android:background="?attr/colorButtonNormal"
             android:focusableInTouchMode="false"
-            android:onClick="@{() -> viewModel.onAddOperation(Operation.DIVIDE)}"
+            android:onClick="@{() -> viewModel.onAddOperator(Operator.DIVIDE)}"
             android:text="@string/divide_sign"
             android:textSize="36sp"
             app:layout_constraintBottom_toTopOf="@+id/multiply_btn"
@@ -348,7 +348,7 @@
             android:layout_height="0dp"
             android:background="@android:color/holo_orange_light"
             android:focusableInTouchMode="false"
-            android:onClick="@{() -> viewModel.onSubmit()}"
+            android:onClick="@{() -> viewModel.onApply()}"
             android:text="@string/equals_sign"
             android:textColor="#FFFFFF"
             android:textSize="36sp"

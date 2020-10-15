@@ -6,7 +6,7 @@ import java.math.RoundingMode.HALF_UP
 /**
  * An enumeration of arithmetic operators organized by the order of operations
  */
-enum class Operation(val symbol: Char, val function: (BigDecimal?, BigDecimal?) -> BigDecimal?) {
+enum class Operator(val symbol: Char, val function: (BigDecimal?, BigDecimal?) -> BigDecimal?) {
     MULTIPLY(symbol = '\u00D7', function = { left, right -> left?.multiply(right) }),
 
     DIVIDE(symbol = '\u00F7', function = { left, right -> left?.divide(right, 10, HALF_UP) }),
