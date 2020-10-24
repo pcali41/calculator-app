@@ -10,7 +10,6 @@ import androidx.room.Query
  */
 @Dao
 interface CalculationDatabaseDAO {
-
     /**
      * Inserts a new row into the table
      */

@@ -13,21 +13,19 @@ import androidx.room.TypeConverters
 @Database(entities = [Calculation::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class CalculationDatabase : RoomDatabase() {
-
     /**
      * Connects the database to the DAO
      */
     abstract val calculationDatabaseDAO: CalculationDatabaseDAO
 
     /**
-     * Defines a companion object, containing functions for accessing the database
+     * Defines a companion object containing a function for accessing the database
      */
     companion object {
         /**
          * Keeps a reference to any database returned via the getInstance method
          */
-        @Volatile
-        private var INSTANCE: CalculationDatabase? = null
+        private lateinit var INSTANCE: CalculationDatabase
 
         /**
          * Helper function to get the database instance.
@@ -39,24 +37,19 @@ abstract class CalculationDatabase : RoomDatabase() {
         fun getInstance(context: Context): CalculationDatabase {
             // Handle multiple calls to this function one thread at a time
             synchronized(this) {
-                // Copy the current value of INSTANCE to a local variable so Kotlin can smart cast.
-                // Smart case is only available to local variables.
-                var instance = INSTANCE
 
                 // If instance is uninitialized, build a new database instance
-                if (instance == null) {
-                    instance = Room.databaseBuilder(
+                if (!::INSTANCE.isInitialized) {
+                    INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         CalculationDatabase::class.java,
-                        "calculation_database"
+                        "calculation_database",
                     )
                         .fallbackToDestructiveMigration()
                         .build()
-
-                    INSTANCE = instance
                 }
 
-                return instance
+                return INSTANCE
             }
         }
     }
