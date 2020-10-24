@@ -24,9 +24,9 @@ interface CalculationDatabaseDAO {
     fun get(key: Long): Calculation?
 
     /**
-     * Selects and returns all rows in the table
+     * Selects and returns all rows in the table sorted by when they were calculated
      */
-    @Query("SELECT * FROM calculation_history_table")
+    @Query("SELECT * FROM calculation_history_table ORDER BY datetime(time_calculated)")
     fun getAllCalculations(): LiveData<List<Calculation>>
 
     /**

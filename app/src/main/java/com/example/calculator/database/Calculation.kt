@@ -17,5 +17,5 @@ data class Calculation(
     val result: String,
 
     @ColumnInfo(name = "time_calculated")
-    val timeCalculated: OffsetDateTime = OffsetDateTime.now()
+    val timeCalculated: OffsetDateTime? = null
 )
