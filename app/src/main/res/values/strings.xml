@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Calculator</string>
 
+    <!-- App Bar Titles -->
+    <string name="title_calculator">Calculator</string>
+    <string name="title_history">History</string>
+
     <!--  Number Pad Button Names  -->
     <string name="period">.</string>
     <string name="zero">0</string>
@@ -21,4 +25,9 @@
     <string name="minus_sign">\u2212</string>
     <string name="multiply_sign">\u00D7</string>
     <string name="divide_sign">\u00F7</string>
+    <string name="action_history">History</string>
+    <string name="cleared_history_message">History Cleared!</string>
+    <string name="action_delete_history">Delete History</string>
+    <string name="sample_expression_text">1+2–3+4–5+6–7+8–9+10–11+12–13+14–15+16–17+18–19+20</string>
+    <string name="sample_result_text">12</string>
 </resources>

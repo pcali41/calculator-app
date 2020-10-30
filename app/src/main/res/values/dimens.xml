@@ -2,4 +2,6 @@
 <resources>
     <dimen name="equation_window_height">140dp</dimen>
     <dimen name="output_window_end_margin">5dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="calculator_button_text_size">36sp</dimen>
 </resources>

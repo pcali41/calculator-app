@@ -43,7 +43,7 @@ abstract class CalculationDatabase : RoomDatabase() {
                     INSTANCE = Room.databaseBuilder(
                         context.applicationContext,
                         CalculationDatabase::class.java,
-                        "calculation_database",
+                        "calculation_database"
                     )
                         .fallbackToDestructiveMigration()
                         .build()

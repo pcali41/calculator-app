@@ -1,11 +1,20 @@
-package com.example.calculator
+package com.example.calculator.calculator
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import java.math.BigDecimal
 
-class StringCalculatorImpl(initialExpression: String = "") : StringCalculator {
+/**
+ * An implementation of [StringCalculator] that recursively splits the current
+ * expression into individual numerical terms and aggregates them together
+ * following the PEMDAS Order of Operations to produce the calculation's result.
+ * 
+ * If the current expression is valid, applying the expression will replace the
+ * current expression with its known result. Otherwise, the result will instead
+ * be changed to the appropriate error message.
+ */
+class StringSplitCalculator(initialExpression: String = "") : StringCalculator {
     private val _expression = MutableLiveData(initialExpression)
 
     override val expression: LiveData<String>
@@ -20,38 +29,61 @@ class StringCalculatorImpl(initialExpression: String = "") : StringCalculator {
 
     private var errorMessage = ""
 
-    override fun applyResult() {
-        if (errorMessage.isEmpty()) {
+    /**
+     * Applies the expression's result to 
+     */
+    override fun apply(): Boolean {
+        return if (errorMessage.isEmpty() && !_result.value.isNullOrEmpty()) {
             _expression.value = _result.value
+            _result.value = ""
+            errorMessage = INVALID_EXPRESSION_MESSAGE
+
+            true
         } else {
             _result.value = errorMessage
+            false
         }
     }
 
-    private fun compute(allowErrors: Boolean = false): String {
-        var result = ""
+    /**
+     * Computes the current expression's result and error message, if applicable.
+     * 
+     * @return The result of the computation as a [String].
+     */
+    private fun compute(): String {
+        var newResult = ""
+        var newErrorMessage = ""
 
         // Compute the result and error message using the order of operations
-        errorMessage = ""
         try {
             val orderOfOperations = Operator.values().asList()
             _expression.value?.let {
-                result = compute(it, orderOfOperations)?.toEngineeringString() ?: ""
+                newResult =
+                    if (it != getLastTerm()) {
+                        compute(it, orderOfOperations)?.toEngineeringString() ?: ""
+                    } else {
+                        ""
+                    }
             }
 
-            if (result.isEmpty()) errorMessage = INVALID_EXPRESSION_MESSAGE
+            if (newResult.isEmpty()) newErrorMessage = INVALID_EXPRESSION_MESSAGE
 
         } catch (e: ArithmeticException) {
             e.printStackTrace()
-            errorMessage = DIVIDE_BY_ZERO_MESSAGE
+            newErrorMessage = DIVIDE_BY_ZERO_MESSAGE
         }
 
-        if (result.isEmpty() && allowErrors) result = errorMessage
+        errorMessage = newErrorMessage
 
-        return result
+        return newResult
     }
 
-    // TODO: Modify this function to apply operations on equivalent OoO levels simultaneously
+    /**
+     * Recursively breaks down the given subExpression in reverse Order of Operations
+     * and aggregates the individual terms into the a single numerical result.
+     *
+     * @return The [BigDecimal] result of the computation.
+     */
     private fun compute(
         subExpression: String,
         orderOfOperations: List<Operator>,
@@ -75,6 +107,9 @@ class StringCalculatorImpl(initialExpression: String = "") : StringCalculator {
         return if (terms.contains(null)) null else terms.reduce(operator.function)
     }
 
+    /**
+     * @return The last numerical term in the expression
+     */
     private fun getLastTerm(): String {
         val operatorSymbols = Operator.values().map { it.symbol }
         return _expression.value?.takeLastWhile { !operatorSymbols.contains(it) } ?: ""
@@ -134,9 +169,11 @@ class StringCalculatorImpl(initialExpression: String = "") : StringCalculator {
     }
 
     private companion object {
+        // Special characters
         const val NEGATIVE_SIGN = '-'
         const val DECIMAL_SIGN = '.'
 
+        // Potential calculation error messages
         const val INVALID_EXPRESSION_MESSAGE = "Invalid expression"
         const val DIVIDE_BY_ZERO_MESSAGE = "Can't divide by zero"
     }
