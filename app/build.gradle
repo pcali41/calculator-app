@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
@@ -55,14 +56,12 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
     // Lifecycles
-    def lifecycles_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycles_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycles_version"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycles_version"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycles_version"
 
     // Navigation
-    def nav_version = "2.3.1"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 
@@ -70,7 +69,6 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     // Room Databases
-    def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
@@ -79,4 +77,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    // Dependency Injection
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 }
