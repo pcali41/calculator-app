@@ -1,8 +1,10 @@
-package com.example.calculator.calculator
+package com.example.calculator.framework
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.calculator.domain.Operator
+import com.example.calculator.interactors.StringCalculator
 import java.math.BigDecimal
 import javax.inject.Inject
 

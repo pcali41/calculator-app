@@ -1,4 +1,4 @@
-package com.example.calculator.database
+package com.example.calculator.framework.database
 
 import android.content.Context
 import androidx.lifecycle.LiveData

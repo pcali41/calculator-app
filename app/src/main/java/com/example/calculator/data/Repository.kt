@@ -1,11 +1,11 @@
-package com.example.calculator
+package com.example.calculator.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.calculator.calculator.Operator
-import com.example.calculator.calculator.StringCalculator
-import com.example.calculator.database.Calculation
-import com.example.calculator.database.CalculationDatabaseDAO
+import com.example.calculator.domain.Operator
+import com.example.calculator.framework.database.Calculation
+import com.example.calculator.framework.database.CalculationDatabaseDAO
+import com.example.calculator.interactors.StringCalculator
 import javax.inject.Inject
 
 class Repository @Inject constructor(

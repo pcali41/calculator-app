@@ -1,12 +1,12 @@
-package com.example.calculator.history
+package com.example.calculator.presentation.history
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.calculator.database.Calculation
 import com.example.calculator.databinding.ListItemCalculationBinding
+import com.example.calculator.framework.database.Calculation
 
 /**
  * [RecyclerView.Adapter] that can display a [Calculation].

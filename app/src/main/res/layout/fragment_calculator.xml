@@ -5,17 +5,17 @@
 
     <data>
 
-        <import type="com.example.calculator.calculator.Operator" />
+        <import type="com.example.calculator.domain.Operator" />
 
         <variable
             name="viewModel"
-            type="com.example.calculator.calculator.CalculatorViewModel" />
+            type="com.example.calculator.presentation.calculator.CalculatorViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".presentation.MainActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/result_preview_text_top"

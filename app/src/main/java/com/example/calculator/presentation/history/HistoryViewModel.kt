@@ -1,10 +1,10 @@
-package com.example.calculator.history
+package com.example.calculator.presentation.history
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.example.calculator.Repository
-import com.example.calculator.database.Calculation
+import com.example.calculator.data.Repository
+import com.example.calculator.framework.database.Calculation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

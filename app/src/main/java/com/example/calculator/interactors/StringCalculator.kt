@@ -1,7 +1,9 @@
-package com.example.calculator.calculator
+package com.example.calculator.interactors
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.calculator.domain.Operator
+import com.example.calculator.framework.StringSplitCalculator
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
