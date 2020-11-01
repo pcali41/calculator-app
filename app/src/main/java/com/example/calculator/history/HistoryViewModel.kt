@@ -1,9 +1,8 @@
 package com.example.calculator.history
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.*
 import com.example.calculator.database.Calculation
 import com.example.calculator.database.CalculationDatabaseDAO
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +12,10 @@ import kotlinx.coroutines.withContext
 /**
  * ViewModel for HistoryFragment.
  */
-class HistoryViewModel(val database: CalculationDatabaseDAO) : ViewModel() {
+class HistoryViewModel @ViewModelInject constructor(
+    private val database: CalculationDatabaseDAO,
+    @Assisted private val savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
     /**
      * Provides an observable list of all Calculations contained by the database.

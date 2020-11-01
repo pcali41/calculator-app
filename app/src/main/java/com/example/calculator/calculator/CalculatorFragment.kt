@@ -10,15 +10,18 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.calculator.R
-import com.example.calculator.database.CalculationDatabase
 import com.example.calculator.databinding.FragmentCalculatorBinding
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
  * A [Fragment] representing the app's main arithmetic calculator interface.
  */
+@AndroidEntryPoint
 class CalculatorFragment : Fragment() {
+
+    private val viewModel: CalculatorViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,8 +38,10 @@ class CalculatorFragment : Fragment() {
         binding.lifecycleOwner = this
 
         // Give the binding access to a new viewModel
-        val viewModel = getViewModel()
         binding.viewModel = viewModel
+
+        // Use SafeArgs to initialize the calculator's expression
+        setInitialExpression()
 
         // Setup the DELETE button's onLongClick listener
         setupOnLongClickListeners(binding, viewModel)
@@ -49,19 +54,13 @@ class CalculatorFragment : Fragment() {
     }
 
     /**
-     * Gives the binding object access to a newly constructed [CalculatorViewModel].
+     * Uses SafeArgs to set the calculator's initial expression.
      */
-    private fun getViewModel(): CalculatorViewModel {
-        val application = requireNotNull(this.activity).application
-        val dataSource = CalculationDatabase.getInstance(application).calculationDatabaseDAO
+    private fun setInitialExpression() {
+        val initialExpression = CalculatorFragmentArgs.fromBundle(
+            requireArguments()).initialExpression
 
-        val expression = CalculatorFragmentArgs.fromBundle(requireArguments()).initialExpression
-        val calculator: StringCalculator = StringSplitCalculator(expression)
-
-        val viewModelFactory = CalculatorViewModelFactory(dataSource, calculator)
-        val viewModel: CalculatorViewModel by viewModels { viewModelFactory }
-
-        return viewModel
+        viewModel.expression.postValue(initialExpression)
     }
 
     /**

@@ -1,6 +1,11 @@
 package com.example.calculator.calculator
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import dagger.Binds
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
 
 /**
  * Provides an interface for performing calculator operations on an observable
@@ -10,7 +15,7 @@ interface StringCalculator {
     /**
      * Represents the current mathematical expression being edited.
      */
-    val expression: LiveData<String>
+    val expression: MutableLiveData<String>
 
     /**
      * Represents the computed numerical result of [expression].
@@ -47,4 +52,18 @@ interface StringCalculator {
      * Applies the current expression and displays the result.
      */
     fun apply(): Boolean
+}
+
+/**
+ * A Dagger Hilt [Module] for providing a [StringCalculator] implementation to
+ * dependent ViewModel Components.
+ */
+@Module
+@InstallIn(ActivityRetainedComponent::class)
+abstract class StringCalculatorModule {
+
+    @Binds
+    abstract fun bindStringCalculator(
+        stringCalculatorImpl: StringSplitCalculator
+    ): StringCalculator
 }

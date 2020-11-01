@@ -1,10 +1,43 @@
 package com.example.calculator.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
+import androidx.lifecycle.LiveData
+import androidx.room.*
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
+
+/**
+ * Defines methods for using the Calculation class with Room
+ */
+@Dao
+interface CalculationDatabaseDAO {
+    /**
+     * Inserts a new row into the table
+     */
+    @Insert
+    fun insert(calculation: Calculation)
+
+    /**
+     * Selects and returns the row with the given row id
+     */
+    @Query("SELECT * from calculation_history_table WHERE id = :key")
+    fun get(key: Long): Calculation?
+
+    /**
+     * Selects and returns all rows in the table sorted by when they were calculated
+     */
+    @Query("SELECT * FROM calculation_history_table ORDER BY datetime(time_calculated)")
+    fun getAllCalculations(): LiveData<List<Calculation>>
+
+    /**
+     * Deletes all rows from the table
+     */
+    @Query("DELETE FROM calculation_history_table")
+    fun clear()
+}
 
 /**
  * A database that stores Calculation information and a global method to access
@@ -52,5 +85,20 @@ abstract class CalculationDatabase : RoomDatabase() {
                 return INSTANCE
             }
         }
+    }
+}
+
+/**
+ * A Dagger Hilt [Module] for providing an [CalculationDatabaseDAO] instance to
+ * dependent ViewModel Components.
+ */
+@Module
+@InstallIn(ActivityRetainedComponent::class)
+object CalculationDatabaseModule {
+    @Provides
+    fun provideCalculationDatabaseDAO(
+        @ApplicationContext context: Context
+    ): CalculationDatabaseDAO {
+        return CalculationDatabase.getInstance(context).calculationDatabaseDAO
     }
 }
