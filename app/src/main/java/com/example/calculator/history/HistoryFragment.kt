@@ -8,16 +8,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.calculator.R
-import com.example.calculator.database.CalculationDatabase
 import com.example.calculator.databinding.FragmentHistoryBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A [Fragment] representing a list of saved math calculations.
  */
+@AndroidEntryPoint
 class HistoryFragment : Fragment() {
 
     private lateinit var binding: FragmentHistoryBinding
+
+    private val viewModel: HistoryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +37,6 @@ class HistoryFragment : Fragment() {
         binding.lifecycleOwner = this
 
         // Give the binding access to a new viewModel
-        val viewModel = getViewModel()
         binding.viewModel = viewModel
 
         // Give the binding access to a new RecyclerView adapter
@@ -75,19 +77,6 @@ class HistoryFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-    }
-
-    /**
-     * Returns a newly constructed [HistoryViewModel] instance.
-     */
-    private fun getViewModel() : HistoryViewModel {
-        val application = requireNotNull(this.activity).application
-        val dataSource = CalculationDatabase.getInstance(application).calculationDatabaseDAO
-
-        val viewModelFactory = HistoryViewModelFactory(dataSource)
-        val viewModel: HistoryViewModel by viewModels { viewModelFactory }
-
-        return viewModel
     }
 
     /**

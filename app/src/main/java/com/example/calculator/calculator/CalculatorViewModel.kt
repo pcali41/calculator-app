@@ -1,8 +1,8 @@
 package com.example.calculator.calculator
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.hilt.Assisted
+import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.*
 import com.example.calculator.database.Calculation
 import com.example.calculator.database.CalculationDatabaseDAO
 import kotlinx.coroutines.Dispatchers
@@ -12,12 +12,13 @@ import kotlinx.coroutines.withContext
 /**
  * A [ViewModel] for managing the main calculator interface.
  */
-class CalculatorViewModel(
+class CalculatorViewModel @ViewModelInject constructor(
     private val database: CalculationDatabaseDAO,
-    private val calculator: StringCalculator
+    private val calculator: StringCalculator,
+    @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-    val expression: LiveData<String>
+    val expression: MutableLiveData<String>
         get() = calculator.expression
 
     val resultPreview: LiveData<String>
