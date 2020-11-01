@@ -7,11 +7,11 @@
 
         <variable
             name="calculation"
-            type="com.example.calculator.database.Calculation" />
+            type="com.example.calculator.framework.database.Calculation" />
 
         <variable
             name="clickListener"
-            type="com.example.calculator.history.CalculationListener" />
+            type="com.example.calculator.presentation.history.CalculationListener" />
     </data>
 
     <LinearLayout

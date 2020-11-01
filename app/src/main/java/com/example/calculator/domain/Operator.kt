@@ -1,4 +1,4 @@
-package com.example.calculator.calculator
+package com.example.calculator.domain
 
 import java.math.BigDecimal
 import java.math.RoundingMode.HALF_UP
