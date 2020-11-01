@@ -78,9 +78,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
-    // Dependency Injection
+    // Dependency Injection w/ Dagger Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
-    implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha02"
-    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha02"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$jetpack_hilt_version"
+    kapt "androidx.hilt:hilt-compiler:$jetpack_hilt_version"
 }

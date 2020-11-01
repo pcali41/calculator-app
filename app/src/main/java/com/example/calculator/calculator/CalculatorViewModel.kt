@@ -3,8 +3,8 @@ package com.example.calculator.calculator
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.example.calculator.Repository
 import com.example.calculator.database.Calculation
-import com.example.calculator.database.CalculationDatabaseDAO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -13,16 +13,15 @@ import kotlinx.coroutines.withContext
  * A [ViewModel] for managing the main calculator interface.
  */
 class CalculatorViewModel @ViewModelInject constructor(
-    private val database: CalculationDatabaseDAO,
-    private val calculator: StringCalculator,
+    private val repository: Repository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     val expression: MutableLiveData<String>
-        get() = calculator.expression
+        get() = repository.currentExpression
 
     val resultPreview: LiveData<String>
-        get() = calculator.result
+        get() = repository.currentResult
 
     /**
      * Applies the current calculator expression and displays the result to the user.
@@ -33,7 +32,7 @@ class CalculatorViewModel @ViewModelInject constructor(
             val newExpression = expression.value ?: ""
             val newResult = resultPreview.value ?: ""
 
-            if (calculator.apply() && newResult.isNotEmpty())
+            if (repository.apply() && newResult.isNotEmpty())
             {
                 val calculation = Calculation(
                     expression = newExpression, result = newResult)
@@ -48,32 +47,32 @@ class CalculatorViewModel @ViewModelInject constructor(
      */
     private suspend fun saveCalculation(calculation: Calculation) {
         withContext(Dispatchers.IO) {
-            database.insert(calculation)
+            repository.saveCalculation(calculation)
         }
     }
 
     /**
      * Handles a request from the user to add a decimal to the expression.
      */
-    fun onAddDecimal() { calculator.addDecimal() }
+    fun onAddDecimal() { repository.addDecimal() }
 
     /**
      * Handles a request from the user to add a numerical digit to the expression.
      */
-    fun onAddDigit(digit: Char) { calculator.addDigit(digit) }
+    fun onAddDigit(digit: Char) { repository.addDigit(digit) }
 
     /**
      * Handles a request from the user to add an operator to the expression.
      */
-    fun onAddOperator(operator: Operator) { calculator.addOperator(operator) }
+    fun onAddOperator(operator: Operator) { repository.addOperator(operator) }
 
     /**
      * Handles a request from the user to remove the last character in the expression.
      */
-    fun onDelete() { calculator.delete() }
+    fun onDelete() { repository.delete() }
 
     /**
      * Handles a request from the user to clear the expression.
      */
-    fun onClear() { calculator.clear() }
+    fun onClear() { repository.clear() }
 }
