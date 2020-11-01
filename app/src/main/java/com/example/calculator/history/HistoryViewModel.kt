@@ -3,8 +3,8 @@ package com.example.calculator.history
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
+import com.example.calculator.Repository
 import com.example.calculator.database.Calculation
-import com.example.calculator.database.CalculationDatabaseDAO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -13,14 +13,14 @@ import kotlinx.coroutines.withContext
  * ViewModel for HistoryFragment.
  */
 class HistoryViewModel @ViewModelInject constructor(
-    private val database: CalculationDatabaseDAO,
+    private val repository: Repository,
     @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     /**
      * Provides an observable list of all Calculations contained by the database.
      */
-    val calculations: LiveData<List<Calculation>> = database.getAllCalculations()
+    val calculations: LiveData<List<Calculation>> = repository.getAllCalculations()
 
     /**
      * Tells the Fragment to navigate to the CalculatorFragment with the selected
@@ -61,7 +61,7 @@ class HistoryViewModel @ViewModelInject constructor(
      */
     private suspend fun getSelectedExpression(id: Long): String {
         return withContext(Dispatchers.IO) {
-            database.get(id)?.expression ?: ""
+            repository.getCalculation(id)?.expression ?: ""
         }
     }
 
@@ -76,14 +76,14 @@ class HistoryViewModel @ViewModelInject constructor(
      * Executes a "Clear History" when the CLEAR button is clicked
      */
     fun onClearHistory() {
-        viewModelScope.launch { clear() }
+        viewModelScope.launch { clearHistory() }
 
         // Notify the user that the history list has been successfully cleared
         _showSnackbarEvent.value = true
     }
 
-    private suspend fun clear() {
-        withContext(Dispatchers.IO) { database.clear() }
+    private suspend fun clearHistory() {
+        withContext(Dispatchers.IO) { repository.clearHistory() }
     }
 
     /**
