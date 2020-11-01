@@ -1,10 +1,11 @@
-package com.example.calculator.calculator
+package com.example.calculator.presentation.calculator
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
-import com.example.calculator.Repository
-import com.example.calculator.database.Calculation
+import com.example.calculator.data.Repository
+import com.example.calculator.domain.Operator
+import com.example.calculator.framework.database.Calculation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
