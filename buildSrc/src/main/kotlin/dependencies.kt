@@ -1,7 +1,7 @@
 object Libs {
 
     object Android {
-        const val gradlePlugin = "com.android.tools.build:gradle:4.1.0"
+        const val gradlePlugin = "com.android.tools.build:gradle:4.2.0-alpha16"
     }
 
     object Test {
@@ -43,6 +43,7 @@ object Libs {
 
         object Compose {
             const val version = "1.0.0-alpha07"
+            const val compiler = "androidx.compose.compiler:compiler:$version"
             const val foundation = "androidx.compose.foundation:foundation:$version"
             const val layout = "androidx.compose.foundation:foundation-layout:$version"
             const val material = "androidx.compose.material:material:$version"
@@ -51,7 +52,6 @@ object Libs {
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:$version"
             const val tooling = "androidx.ui:ui-tooling:$version"
-            const val test = "androidx.compose.test:test-core:$version"
             const val ui = "androidx.compose.ui:ui:$version"
             const val uiTest = "androidx.ui:ui-test:$version"
         }
@@ -78,6 +78,9 @@ object Libs {
             private const val version = "2.3.1"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
+
+            private const val nav_compose_version = "1.0.0-alpha01"
+            const val navCompose = "androidx.navigation:navigation-compose:$nav_compose_version"
 
             object SafeArgs {
                 const val gradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
