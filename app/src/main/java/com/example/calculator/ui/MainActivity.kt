@@ -1,4 +1,4 @@
-package com.example.calculator.presentation
+package com.example.calculator.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

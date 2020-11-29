@@ -1,4 +1,4 @@
-package com.example.calculator.presentation.history
+package com.example.calculator.ui.history
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

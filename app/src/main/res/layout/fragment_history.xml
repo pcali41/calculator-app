@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.calculator.presentation.history.HistoryViewModel" />
+            type="com.example.calculator.ui.history.HistoryViewModel" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -17,6 +17,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".presentation.history.HistoryFragment"
+        tools:context=".ui.history.HistoryFragment"
         tools:listitem="@layout/list_item_calculation" />
 </layout>

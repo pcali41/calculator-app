@@ -1,4 +1,4 @@
-package com.example.calculator.presentation.calculator
+package com.example.calculator.ui.calculator
 
 import android.os.Bundle
 import android.view.*

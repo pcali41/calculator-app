@@ -9,13 +9,13 @@
 
         <variable
             name="viewModel"
-            type="com.example.calculator.presentation.calculator.CalculatorViewModel" />
+            type="com.example.calculator.ui.calculator.CalculatorViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.MainActivity">
+        tools:context=".ui.MainActivity">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/result_preview_text_top"

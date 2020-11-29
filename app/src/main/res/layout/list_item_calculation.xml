@@ -11,7 +11,7 @@
 
         <variable
             name="clickListener"
-            type="com.example.calculator.presentation.history.CalculationListener" />
+            type="com.example.calculator.ui.history.CalculationListener" />
     </data>
 
     <LinearLayout

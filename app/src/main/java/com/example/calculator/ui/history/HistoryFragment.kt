@@ -1,4 +1,4 @@
-package com.example.calculator.presentation.history
+package com.example.calculator.ui.history
 
 import android.os.Bundle
 import android.view.*

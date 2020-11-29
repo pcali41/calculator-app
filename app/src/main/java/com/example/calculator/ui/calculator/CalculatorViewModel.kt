@@ -1,4 +1,4 @@
-package com.example.calculator.presentation.calculator
+package com.example.calculator.ui.calculator
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
