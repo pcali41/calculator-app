@@ -2,13 +2,16 @@ package com.example.calculator.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.calculator.domain.Operator
-import com.example.calculator.framework.database.Calculation
-import com.example.calculator.framework.database.CalculationDatabaseDAO
-import com.example.calculator.interactors.StringCalculator
-import javax.inject.Inject
+import com.example.calculator.data.room.Calculation
+import com.example.calculator.data.room.CalculationDatabaseDAO
+import com.example.calculator.util.StringCalculator
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
-class Repository @Inject constructor(
+class Repository constructor(
     private val calculator: StringCalculator,
     private val database: CalculationDatabaseDAO
 ) {
@@ -38,4 +41,16 @@ class Repository @Inject constructor(
     fun getCalculation(id: Long): Calculation? = database.get(id)
 
     fun clearHistory() = database.clear()
+}
+
+@Module
+@InstallIn(SingletonComponent::class)
+object RepositoryModule {
+
+    @Singleton
+    @Provides
+    fun provideRepository(
+        calculator: StringCalculator,
+        database: CalculationDatabaseDAO
+    ): Repository = Repository(calculator, database)
 }

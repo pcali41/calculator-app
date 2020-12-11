@@ -1,11 +1,13 @@
 package com.example.calculator.ui.calculator
 
-import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.calculator.data.Operator
 import com.example.calculator.data.Repository
-import com.example.calculator.domain.Operator
-import com.example.calculator.framework.database.Calculation
+import com.example.calculator.data.room.Calculation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -15,14 +17,28 @@ import kotlinx.coroutines.withContext
  */
 class CalculatorViewModel @ViewModelInject constructor(
     private val repository: Repository,
-    @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     val expression: MutableLiveData<String>
         get() = repository.currentExpression
 
-    val resultPreview: LiveData<String>
+    val result: LiveData<String>
         get() = repository.currentResult
+
+    /**
+     * Handles a request from the user to add a numerical digit to the expression.
+     */
+    fun onAddDigit(digit: Char) { repository.addDigit(digit) }
+
+    /**
+     * Handles a request from the user to add a decimal to the expression.
+     */
+    fun onAddDecimal() { repository.addDecimal() }
+
+    /**
+     * Handles a request from the user to add an operator to the expression.
+     */
+    fun onAddOperator(operator: Operator) { repository.addOperator(operator) }
 
     /**
      * Applies the current calculator expression and displays the result to the user.
@@ -31,12 +47,14 @@ class CalculatorViewModel @ViewModelInject constructor(
     fun onApply() {
         viewModelScope.launch {
             val newExpression = expression.value ?: ""
-            val newResult = resultPreview.value ?: ""
+            val newResult = result.value ?: ""
 
             if (repository.apply() && newResult.isNotEmpty())
             {
                 val calculation = Calculation(
-                    expression = newExpression, result = newResult)
+                    expression = newExpression,
+                    result = newResult
+                )
 
                 saveCalculation(calculation)
             }
@@ -51,21 +69,6 @@ class CalculatorViewModel @ViewModelInject constructor(
             repository.saveCalculation(calculation)
         }
     }
-
-    /**
-     * Handles a request from the user to add a decimal to the expression.
-     */
-    fun onAddDecimal() { repository.addDecimal() }
-
-    /**
-     * Handles a request from the user to add a numerical digit to the expression.
-     */
-    fun onAddDigit(digit: Char) { repository.addDigit(digit) }
-
-    /**
-     * Handles a request from the user to add an operator to the expression.
-     */
-    fun onAddOperator(operator: Operator) { repository.addOperator(operator) }
 
     /**
      * Handles a request from the user to remove the last character in the expression.

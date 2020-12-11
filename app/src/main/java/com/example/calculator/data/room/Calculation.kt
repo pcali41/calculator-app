@@ -1,4 +1,4 @@
-package com.example.calculator.framework.database
+package com.example.calculator.data.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -17,5 +17,5 @@ data class Calculation(
     val result: String,
 
     @ColumnInfo(name = "time_calculated")
-    val timeCalculated: OffsetDateTime? = null
+    val timeCalculated: OffsetDateTime = OffsetDateTime.now()
 )

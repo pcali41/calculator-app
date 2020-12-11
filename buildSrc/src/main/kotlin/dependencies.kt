@@ -1,7 +1,7 @@
 object Libs {
 
     object Android {
-        const val gradlePlugin = "com.android.tools.build:gradle:4.2.0-alpha16"
+        const val gradlePlugin = "com.android.tools.build:gradle:7.0.0-alpha02"
     }
 
     object Test {
@@ -13,7 +13,7 @@ object Libs {
     }
 
     object Kotlin {
-        const val version = "1.4.10"
+        const val version = "1.4.20"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
         const val extensions = "org.jetbrains.kotlin:kotlin-android-extensions:$version"
@@ -42,7 +42,7 @@ object Libs {
         const val coreKtx = "androidx.core:core-ktx:1.3.2"
 
         object Compose {
-            const val version = "1.0.0-alpha07"
+            const val version = "1.0.0-alpha08"
             const val compiler = "androidx.compose.compiler:compiler:$version"
             const val foundation = "androidx.compose.foundation:foundation:$version"
             const val layout = "androidx.compose.foundation:foundation-layout:$version"
@@ -51,9 +51,9 @@ object Libs {
             const val materialIconsExtended = "androidx.compose.material:material-icons-extended:$version"
             const val runtime = "androidx.compose.runtime:runtime:$version"
             const val runtimeLiveData = "androidx.compose.runtime:runtime-livedata:$version"
-            const val tooling = "androidx.ui:ui-tooling:$version"
+            const val tooling = "androidx.compose.ui:ui-tooling:$version"
             const val ui = "androidx.compose.ui:ui:$version"
-            const val uiTest = "androidx.ui:ui-test:$version"
+            const val uiTest = "androidx.compose.ui:ui-test:$version"
         }
 
         object Hilt {
@@ -75,11 +75,11 @@ object Libs {
         }
 
         object Navigation {
-            private const val version = "2.3.1"
+            private const val version = "2.3.2"
             const val fragment = "androidx.navigation:navigation-fragment-ktx:$version"
             const val uiKtx = "androidx.navigation:navigation-ui-ktx:$version"
 
-            private const val nav_compose_version = "1.0.0-alpha01"
+            private const val nav_compose_version = "1.0.0-alpha03"
             const val navCompose = "androidx.navigation:navigation-compose:$nav_compose_version"
 
             object SafeArgs {
