@@ -1,10 +1,9 @@
-package com.example.calculator.framework
+package com.example.calculator.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.calculator.domain.Operator
-import com.example.calculator.interactors.StringCalculator
+import com.example.calculator.data.Operator
 import java.math.BigDecimal
 import javax.inject.Inject
 
@@ -21,7 +20,7 @@ class StringSplitCalculator @Inject constructor() : StringCalculator {
     override val expression = MutableLiveData("")
 
     private val _result = MediatorLiveData<String>().apply {
-        addSource(this@StringSplitCalculator.expression) { value = compute() }
+        addSource(expression) { value = compute() }
     }
 
     override val result: LiveData<String>
@@ -34,7 +33,7 @@ class StringSplitCalculator @Inject constructor() : StringCalculator {
      */
     override fun apply(): Boolean {
         return if (errorMessage.isEmpty() && !_result.value.isNullOrEmpty()) {
-            this.expression.value = _result.value
+            expression.value = _result.value
             _result.value = ""
             errorMessage = INVALID_EXPRESSION_MESSAGE
 
@@ -57,7 +56,7 @@ class StringSplitCalculator @Inject constructor() : StringCalculator {
         // Compute the result and error message using the order of operations
         try {
             val orderOfOperations = Operator.values().asList()
-            this.expression.value?.let {
+            expression.value?.let {
                 newResult =
                     if (it != getLastTerm()) {
                         compute(it, orderOfOperations)?.toEngineeringString() ?: ""
@@ -112,12 +111,12 @@ class StringSplitCalculator @Inject constructor() : StringCalculator {
      */
     private fun getLastTerm(): String {
         val operatorSymbols = Operator.values().map { it.symbol }
-        return this.expression.value?.takeLastWhile { !operatorSymbols.contains(it) } ?: ""
+        return expression.value?.takeLastWhile { !operatorSymbols.contains(it) } ?: ""
     }
 
     override fun addDecimal() {
         if (!getLastTerm().contains(DECIMAL_SIGN)) {
-            this.expression.value += DECIMAL_SIGN
+            expression.value += DECIMAL_SIGN
         }
     }
 
@@ -126,15 +125,15 @@ class StringSplitCalculator @Inject constructor() : StringCalculator {
         val hasRedundantZero = !lastTerm.contains(DECIMAL_SIGN)
                     && lastTerm.toBigDecimalOrNull() == BigDecimal.ZERO
 
-        this.expression.value = if (hasRedundantZero) {
-            this.expression.value?.dropLast(1).plus(digit)
+        expression.value = if (hasRedundantZero) {
+            expression.value?.dropLast(1).plus(digit)
         } else {
-            this.expression.value?.plus(digit)
+            expression.value?.plus(digit)
         }
     }
 
     override fun addOperator(operator: Operator) {
-        var newExpression = this.expression.value ?: ""
+        var newExpression = expression.value ?: ""
 
         // Remove the trailing decimal point, if present
         if (newExpression.endsWith(DECIMAL_SIGN)) {
@@ -157,15 +156,15 @@ class StringSplitCalculator @Inject constructor() : StringCalculator {
             newExpression = newExpression.plus(operatorToAdd)
         }
 
-        this.expression.value = newExpression
+        expression.value = newExpression
     }
 
     override fun delete() {
-        this.expression.value = this.expression.value?.dropLast(1) ?: ""
+        expression.value = expression.value?.dropLast(1) ?: ""
     }
 
     override fun clear() {
-        this.expression.value = ""
+        expression.value = ""
     }
 
     private companion object {

@@ -1,4 +1,4 @@
-package com.example.calculator.framework.database
+package com.example.calculator.data.room
 
 import android.content.Context
 import androidx.lifecycle.LiveData
@@ -6,8 +6,9 @@ import androidx.room.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 /**
  * Defines methods for using the Calculation class with Room
@@ -93,8 +94,10 @@ abstract class CalculationDatabase : RoomDatabase() {
  * dependent ViewModel Components.
  */
 @Module
-@InstallIn(ActivityRetainedComponent::class)
+@InstallIn(SingletonComponent::class)
 object CalculationDatabaseModule {
+
+    @Singleton
     @Provides
     fun provideCalculationDatabaseDAO(
         @ApplicationContext context: Context

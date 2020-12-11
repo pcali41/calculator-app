@@ -1,4 +1,4 @@
-package com.example.calculator.framework.database
+package com.example.calculator.data.room
 
 import androidx.room.TypeConverter
 import java.time.OffsetDateTime
@@ -19,10 +19,8 @@ object Converters {
      */
     @TypeConverter
     @JvmStatic
-    fun toOffsetDateTime(value: String?): OffsetDateTime? {
-        return value?.let {
-            return formatter.parse(value, OffsetDateTime::from)
-        }
+    fun toOffsetDateTime(value: String?): OffsetDateTime {
+        return formatter.parse(value, OffsetDateTime::from)
     }
 
     /**
@@ -30,7 +28,7 @@ object Converters {
      */
     @TypeConverter
     @JvmStatic
-    fun fromOffsetDateTime(date: OffsetDateTime?): String? {
-        return date?.format(formatter)
+    fun fromOffsetDateTime(date: OffsetDateTime): String? {
+        return date.format(formatter)
     }
 }

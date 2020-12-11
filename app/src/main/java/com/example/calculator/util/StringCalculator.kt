@@ -1,13 +1,12 @@
-package com.example.calculator.interactors
+package com.example.calculator.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.calculator.domain.Operator
-import com.example.calculator.framework.StringSplitCalculator
+import com.example.calculator.data.Operator
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityRetainedComponent
+import dagger.hilt.components.SingletonComponent
 
 /**
  * Provides an interface for performing calculator operations on an observable
@@ -61,7 +60,7 @@ interface StringCalculator {
  * dependent ViewModel Components.
  */
 @Module
-@InstallIn(ActivityRetainedComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class StringCalculatorModule {
 
     @Binds
